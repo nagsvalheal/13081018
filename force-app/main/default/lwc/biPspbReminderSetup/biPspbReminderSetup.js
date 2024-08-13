@@ -108,7 +108,9 @@ export default class BiPspbReminderSetup extends LightningElement {
 				this.existingReminder = data.selectedCheckboxes ? data.selectedCheckboxes.split(';').filter(item => item).map(item => parseFloat(item)) : [];
 				this.updateCheckboxDisabling();
 				this.updateCheckBoxValues();
-			}   if (typeof window !== 'undefined') {
+			}   
+			
+			if (typeof window !== 'undefined') {
 					this.dispatchEvent(new CustomEvent('load'));
 				}
 			else if (error) {

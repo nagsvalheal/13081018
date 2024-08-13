@@ -226,9 +226,9 @@ public with sharing class BI_PSPB_CaseSupportCtrl {
 		String conditions =
 			'ContentDocumentId = \'' +
 			contentDocumentId +
-			'\' AND FileType IN (\'jpg\', \'png\')';
-		Boolean withUserMode = true;
-        String OrderBy = 'ORDER BY CreatedDate DESC  limit 1';
+			'\' AND FileType IN (\'jpg\', \'png\') WITH USER_MODE ORDER BY CreatedDate  DESC LIMIT 10000';
+		Boolean withUserMode = false;
+       // String OrderBy = 'ORDER BY CreatedDate DESC  limit 1';
 
 		// Use the utility method to execute the query
 		List<SObject> results = BI_PSP_CommonQueryUtility.executeQuery(
@@ -238,7 +238,8 @@ public with sharing class BI_PSPB_CaseSupportCtrl {
 			withUserMode
 		);
 		List<ContentVersion> contents = (List<ContentVersion>) results;
-
+System.debug(contents+'contents');
+        
 		if (contents.isEmpty() || contents[0].VersionData == null) {
 			BI_PSP_LogMessagesUtility.logError(
 				BI_PSPB_SupportCenterConstantsCtrl.error,
